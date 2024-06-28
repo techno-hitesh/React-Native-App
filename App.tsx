@@ -1,18 +1,39 @@
 import React from 'react';
-import Login from './components/screen/auth/login/Login';
-import List from './components/screen/dashboard/List';
+import Login from './src/screen/auth/login/Login';
+import List from './src/screen/dashboard/List';
 import { View } from 'react-native';
-import Grid from './components/learning/Grid';
-import FlatListCompo from './components/learning/FlatList';
+import Grid from './src/learning/Grid';
+import FlatListCompo from './src/learning/FlatList';
+import { NativeBaseProvider,extendTheme } from 'native-base';
+import { BoxImage } from './src/screen/dashboard/BoxImage';
+import { SwiggyLogin } from './src/screen/auth/login/SwiggyLogin';
 
 function App() {
+
+  const theme = extendTheme({
+    components: {
+      Heading: {
+        baseStyle: (props: any) => {
+          return {
+            _light: { color: 'red.300' },
+            _dark: { color: 'blue.300' },
+          };
+        },
+      },
+    },
+  });
+
   return (
-    <View>
+    <NativeBaseProvider theme={theme}>
+     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+      <SwiggyLogin />
       {/* <Login /> */}
+      {/* <BoxImage /> */}
       {/* <List /> */}
       {/* <Grid /> */}
-      <FlatListCompo />
+      {/* <FlatListCompo /> */}
     </View>
+    </NativeBaseProvider>
   );
 }
 
